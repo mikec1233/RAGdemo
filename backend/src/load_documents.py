@@ -10,5 +10,5 @@ def load_documents():
     documents = loader.load()
     return documents
 
-print(load_documents())
+#print(load_documents())
 
