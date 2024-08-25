@@ -1,4 +1,4 @@
-from langchain.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import DirectoryLoader
 from dotenv import load_dotenv
 import os
 
@@ -10,5 +10,5 @@ def load_documents():
     documents = loader.load()
     return documents
 
-#print(load_documents())
+print(load_documents())
 
