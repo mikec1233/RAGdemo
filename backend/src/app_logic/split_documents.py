@@ -1,9 +1,9 @@
-from load_documents import load_documents
+from backend.src.app_logic.load_documents import load_documents
 from langchain.schema import Document
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def split_text(documents: list[Document]):
+def split_documents(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=300,
         chunk_overlap=100,

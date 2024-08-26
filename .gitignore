@@ -1,3 +1,6 @@
 .env
 requirements.txt
 .venv
+__pycache__
+db_test.py
+backend/data/
