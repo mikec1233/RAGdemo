@@ -35,7 +35,7 @@ def submit_query_endpoint(request: SubmitQueryRequest) -> DBQueryModel:
     
 
     #new_query = DBQueryModel(query_text=request.query_text)
-    user_id = request.user_id if request.user_id else "nobody"
+    user_id = request.user_id if request.user_id else "unknown"
     new_query = DBQueryModel(query_text=request.query_text, user_id=user_id) 
 
     # Make a synchronous call to the worker (the RAG/AI app).
