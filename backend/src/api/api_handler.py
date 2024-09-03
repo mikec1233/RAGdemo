@@ -5,11 +5,21 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from backend.src.database.db_model import DBQueryModel
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend.src.app_logic.query_data import query_rag
 
 CHARACTER_LIMIT = 2000
 app = FastAPI()
+
+# implementing CORS for frontend, will test later 9/3/24
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"], 
+)
 
 
 class SubmitQueryRequest(BaseModel):
