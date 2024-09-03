@@ -26,7 +26,7 @@ TTL_EXPIRE_TIMESTAMP = 60 * 60 * 24 * 30 * TTL_EXPIRE_MONTHS
 
 class DBQueryModel(BaseModel):
     query_id: str = Field(default_factory=lambda: uuid.uuid4().hex)
-    user_id: str 
+    user_id: str = "unknown"
     create_time: int = Field(default_factory=lambda: int(time.time()))
     ttl: int = Field(default_factory=lambda: int(time.time() + TTL_EXPIRE_TIMESTAMP))
     query_text: str
