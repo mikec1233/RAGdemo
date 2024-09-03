@@ -4,3 +4,4 @@ requirements.txt
 __pycache__
 db_test.py
 backend/data/
+backend/tests/
