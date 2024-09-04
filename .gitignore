@@ -1,5 +1,5 @@
 .env
-requirements.txt
+#requirements.txt
 .venv
 __pycache__
 db_test.py
