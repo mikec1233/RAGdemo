@@ -5,3 +5,4 @@ __pycache__
 db_test.py
 backend/data/
 backend/tests/
+frontend/rag_frontend/src/api-client/
