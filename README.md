@@ -19,8 +19,9 @@ pip install -r backend/requirements.txt
 mkdir backend/data
 cd backend/data
 ```
-upload a PDF to data directory
-cd back to RAGdemo and create a .gitignore file
+* upload a PDF to data directory
+* cd back to RAGdemo
+* create a .gitignore file
 add the following:
 ```
 .env
