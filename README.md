@@ -87,6 +87,7 @@ cd frontend/rag_frontend
 npm install
 ```
 ### To generate our API client based on our backend specification
+* Ensure that ```frontend/rag_frontend/src/api-client/``` is in the .gitignore
 * Start the backend
 * Run the command
 ```bash
