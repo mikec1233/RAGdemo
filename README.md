@@ -1,6 +1,7 @@
 # Demo for Atorus Research to introduce RAG for OpenVal
 
 ## 1. Clone repo
+
       ```bash
       git clone https://github.com/mikec1233/RAGdemo.git
       cd RAGdemo
