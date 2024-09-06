@@ -2,18 +2,18 @@
 
 Get Started: 
 
-1. Clone repo
+## 1. Clone repo
       ``` bash
       git clone https://github.com/mikec1233/RAGdemo.git
       cd RAGdemo
 
-2. Set up backend
+## 2. Set up backend
       ``` python
       python3 -m venv .venv
       source .venv/bin/activate
       pip install -r backend/requirements.txt
 
-3. Set up Chroma DB
+## 3. Set up Chroma DB
       ``` bash
       mkdir backend/data
       cd backend/data
@@ -40,7 +40,7 @@ Get Started:
       DB_PASSWORD="yourpass"
       DB_NAME="yourdb"
       ```
-      * You must ensure that .env is in your .gitignore. DO NOT push any key to github. *
+      **You must ensure that .env is in your .gitignore. DO NOT push any key to github.**
      
       You can now run the following:
       ``` python
@@ -48,7 +48,7 @@ Get Started:
       ```
       Ensure that your data/Chroma/ directory contains data
 
-4. Set up mysql database
+## 4. Set up mysql database
       In our current stage we are just using a local instance of mysql for testing purposes.
       Follow a tutorial to set up mysql. Here is a tutorial for [mac](https://www.youtube.com/watch?v=iQjmY2Q5n3o&t=245s)
       Head into your running mysql server and create a new database. Put the name of that database int your .env file.
@@ -78,18 +78,18 @@ Get Started:
       You can see the api documentation and run calls at localhost:8000/docs
       The backend should be up and running
 
-5. Set up frontend
+## 5. Set up frontend
      ```bash
      cd frontend/rag_frontend
      npm install
      ```
-   To generate our API client based on our backend specification
+   ### To generate our API client based on our backend specification
       1. Start the backend
       2. Run the command
          ```bash
          npm run generate-api-client
       3. This will automatically configure our API client, which we will use to call our backend API from client side.
-   Start the frontend with
+    Start the frontend with
       ```bash
       npm run start
       ```
