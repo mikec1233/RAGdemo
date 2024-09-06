@@ -3,10 +3,9 @@
 Get Started: 
 
 ## 1. Clone repo
-      `
-      git clone https://github.com/mikec1233/RAGdemo.git
-      cd RAGdemo
-      `
+      `git clone https://github.com/mikec1233/RAGdemo.git`
+      `cd RAGdemo`
+      
 
 ## 2. Set up backend
       `
