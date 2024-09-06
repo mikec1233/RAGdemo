@@ -21,8 +21,7 @@ cd backend/data
 ```
 * Upload a PDF to data directory
 * cd back to RAGdemo
-* Create a .gitignore file
-* Add the following:
+* Ensure your .gitignore has the following:
 ```
 .env
 .venv
