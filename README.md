@@ -19,10 +19,10 @@ pip install -r backend/requirements.txt
 mkdir backend/data
 cd backend/data
 ```
-* upload a PDF to data directory
+* Upload a PDF to data directory
 * cd back to RAGdemo
-* create a .gitignore file
-add the following:
+* Create a .gitignore file
+* Add the following:
 ```
 .env
 .venv
@@ -32,8 +32,8 @@ backend/data/
 backend/tests/
 frontend/rag_frontend/src/api-client/
 ```
-create a .env file
-add the following:
+* Create a .env file
+* Add the following:
 ```
 DATA_PATH=path/to/data/
 CHROMA_PATH=path/to/data/Chroma
@@ -44,21 +44,22 @@ DB_NAME="yourdb"
 ```
 **You must ensure that .env is in your .gitignore. DO NOT push any key to github.**
      
-You can now run the following:
+* Now run the following:
 ```python
-      python -m backend.src.app_logic.store_dox
+python -m backend.src.app_logic.store_dox
 ```
-Ensure that your data/Chroma/ directory contains data
+* Ensure that your data/Chroma/ directory contains data
 
 ## 4. Set up mysql database
 In our current stage we are just using a local instance of mysql for testing purposes.
-Follow a tutorial to set up mysql. Here is a tutorial for [mac](https://www.youtube.com/watch?v=iQjmY2Q5n3o&t=245s)
-Head into your running mysql server and create a new database. Put the name of that database int your .env file.
+* Follow a tutorial to set up mysql. Here is a tutorial for [mac](https://www.youtube.com/watch?v=iQjmY2Q5n3o&t=245s)
+* Head into your running mysql server and create a new database.
+* Put the name of that database int your .env file.
 ```sql
 CREATE DATABASE your_database_name;
 USE your_database_name;
 ```
-Next, create a table called queries:
+* Create a table called queries:
 ```sql
    CREATE TABLE queries (
       query_id VARCHAR(255) PRIMARY KEY,
@@ -72,11 +73,11 @@ Next, create a table called queries:
    );
 ```
 
-In RAGdemo run the command
+* In RAGdemo run the command
 ```python
 python -m backend.src.api.api_handler
 ```
-Verify that the api up at localhost:8000
+* Verify that the api up at localhost:8000
 You can see the api documentation and run calls at localhost:8000/docs
 The backend should be up and running
 
@@ -86,13 +87,13 @@ cd frontend/rag_frontend
 npm install
 ```
 ### To generate our API client based on our backend specification
-1. Start the backend
-2. Run the command
+* Start the backend
+* Run the command
 ```bash
 npm run generate-api-client
 ```
-3. This will automatically configure our API client, which we will use to call our backend API from client side.
-Start the frontend with
+This will automatically configure our API client, which we will use to call our backend API from client side.
+* Start the frontend with
 ```bash
 npm run start
 ```
