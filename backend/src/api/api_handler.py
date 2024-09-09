@@ -50,6 +50,9 @@ def submit_query_endpoint(request: SubmitQueryRequest) -> DBQueryModel:
 
     # Make a synchronous call to the worker (the RAG/AI app).
     query_response = query_rag(request.query_text)
+    if query_response is None:
+        return "Error: No response recieved for query_rag."
+    print(f"Query response: {query_response}")
     new_query.answer_text = query_response.response_text
     new_query.sources = query_response.sources
     new_query.is_complete = True

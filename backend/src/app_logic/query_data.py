@@ -40,7 +40,9 @@ def query_rag(query_text: str) -> QueryResponse:
     #check if results are suitable
     if len(results) == 0 or results[0][1] < 0.7:
         print(f"Unable to find matching results.")
-        return
+        #When no results are found we return, however we are not returning a QueryResponse object.
+        #To fix this we are going to are going to return a QueryResponse object with the statement "No suitable results found"
+        return QueryResponse(query_text=query_text, response_text="No suitable results found.", sources=[])
     
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
