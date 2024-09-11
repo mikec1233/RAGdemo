@@ -95,7 +95,7 @@ npm run generate-api-client
 This will automatically configure our API client, which we will use to call our backend API from client side.
 * Start the frontend with
 ```bash
-npm run start
+npm run dev
 ```
 
    
