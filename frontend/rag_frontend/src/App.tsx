@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { DefaultApi, Configuration } from './api-client'; // Adjust path accordingly
+import { SubmitQueryRequest } from './api-client'; // Adjust path accordingly
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [queryText, setQueryText] = useState('');
+  const [response, setResponse] = useState<any>(null);
+
+  // Define the base URL in the configuration
+  const config = new Configuration({
+    basePath: 'http://localhost:8000',  // Set the correct base URL
+  });
+  const api = new DefaultApi(config); // Pass the configuration when instantiating DefaultApi
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const requestBody: SubmitQueryRequest = {
+      queryText: queryText,
+      userId: '1234', // Example user ID
+    };
+
+    try {
+      const result = await api.submitQueryEndpointSubmitQueryPost({
+        submitQueryRequest: requestBody,
+      });
+      setResponse(result);
+    } catch (error) {
+      console.error('Error submitting query:', error);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <h1>Submit a Query</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="queryText">Query Text</label>
+        <input
+          type="text"
+          id="queryText"
+          value={queryText}
+          onChange={(e) => setQueryText(e.target.value)}
+        />
+        <button type="submit">Submit Query</button>
+      </form>
 
-export default App
+      {response && (
+        <div>
+          <h2>Response</h2>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
