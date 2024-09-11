@@ -5,6 +5,7 @@ import { SubmitQueryRequest } from './api-client'; // Adjust path accordingly
 const App: React.FC = () => {
   const [queryText, setQueryText] = useState('');
   const [response, setResponse] = useState<any>(null);
+//test
 
   // Define the base URL in the configuration
   const config = new Configuration({
