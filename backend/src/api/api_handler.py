@@ -50,9 +50,6 @@ def submit_query_endpoint(request: SubmitQueryRequest) -> DBQueryModel:
 
     # Make a synchronous call to the worker (the RAG/AI app).
     query_response = query_rag(request.query_text)
-    if query_response is None:
-        return "Error: No response recieved for query_rag."
-    print(f"Query response: {query_response}")
     new_query.answer_text = query_response.response_text
     new_query.sources = query_response.sources
     new_query.is_complete = True
@@ -60,7 +57,14 @@ def submit_query_endpoint(request: SubmitQueryRequest) -> DBQueryModel:
 
     return new_query
 
-@app.post("/list_queries")
+# @app.post("/list_queries")
+# def list_query_endpoint(user_id: str) -> list[DBQueryModel]:
+#     ITEM_COUNT = 5
+#     print(f"Printing Quries for user: ${user_id}")
+#     query_items = DBQueryModel.list_queries_by_user(user_id=user_id, count=ITEM_COUNT)
+#     return query_items
+
+@app.get("/list_queries")
 def list_query_endpoint(user_id: str) -> list[DBQueryModel]:
     ITEM_COUNT = 5
     print(f"Printing Quries for user: ${user_id}")
