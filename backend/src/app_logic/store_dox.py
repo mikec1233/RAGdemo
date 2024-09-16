@@ -12,7 +12,7 @@ from backend.src.app_logic.get_embedding_function import get_embedding_function
 from langchain.schema import Document
 load_dotenv()
 
-openai.api_key = os.environ['OPENAI_API_KEY']
+openai.api_key = os.getenv('OPENAI_API_KEY')
 CHROMA_PATH = os.environ['CHROMA_PATH']
 #client = chromadb.PersistentClient(path="CHROMA_PATH")
 
