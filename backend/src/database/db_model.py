@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DB_CONFIG = {
-    "host": "localhost",
+    "host": os.environ.get("DB_HOST"),
+    "port": os.environ.get("DB_PORT"),
     "user": os.environ.get("DB_USER"),
     "password": os.environ.get("DB_PASSWORD"),
     "database": os.environ.get("DB_NAME"),
@@ -19,7 +20,7 @@ DB_CONFIG = {
     # 'ssl_cert': os.environ.get("CLIENT_CERT"),
     # 'ssl_key': os.environ.get("CLIENT_KEY") 
 }
-
+print(f"DB_CONFIG: {DB_CONFIG}")
 TABLE_NAME = os.environ.get("TABLE_NAME", "queries")
 TTL_EXPIRE_MONTHS = 6  # Only keep queries for 6 months.
 TTL_EXPIRE_TIMESTAMP = 60 * 60 * 24 * 30 * TTL_EXPIRE_MONTHS
