@@ -2,18 +2,19 @@ import React from 'react';
 
 interface ChatDisplayProps {
   responses: { user: string; bot: string }[];
+  username: string;
 }
 
-const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses }) => {
+const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) => {
   return (
     <div className="chat-display">
       {responses.map((res, index) => (
         <div key={index} className="message">
           <div className="user-message">
-            <strong>You:</strong> {res.user}
+            <strong>{username}:</strong> {res.user}
           </div>
           <div className="bot-message">
-            <strong>Bot:</strong> {res.bot}
+            {res.bot}
           </div>
         </div>
       ))}
