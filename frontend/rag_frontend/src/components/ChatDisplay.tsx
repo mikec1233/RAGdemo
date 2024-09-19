@@ -5,8 +5,7 @@ interface ChatDisplayProps {
   username: string;
 }
 
-
-const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username}) => {
+const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) =>  {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
