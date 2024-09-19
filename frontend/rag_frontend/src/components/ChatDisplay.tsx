@@ -16,7 +16,7 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses }) => {
   return (
     <div 
       className="chat-display" 
-      style={{ overflowY: 'scroll', maxHeight: '400px', scrollbarWidth: 'none', msOverflowStyle: 'none' }} // Updated by Efaz to hide scroll bar
+      style={{ overflowY: 'scroll', maxHeight: '400px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
       {responses.map((res, index) => (
         <div key={index} className="message">
