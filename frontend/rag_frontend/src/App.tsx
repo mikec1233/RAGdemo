@@ -89,7 +89,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
-            <ChatDisplay responses={responses} />
+            <ChatDisplay responses={responses} username={username}/>
             <ChatForm onSubmit={handleChatSubmit} />
           </>
         )}
