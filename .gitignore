@@ -7,3 +7,4 @@ backend/tests/
 frontend/rag_frontend/src/api-client/
 backend/.DS_Store
 spencer_rag_notes.md
+python_print_paths.py

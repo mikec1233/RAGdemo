@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/python:3.11
 
 # Copy requirements.txt
-COPY requirements.txt ${LAMBDA_TASK_ROOT}
+COPY backend/requirements.txt ${LAMBDA_TASK_ROOT}
 
 # Required to make SQLlite3 work for Chroma.
 RUN pip install pysqlite3-binary
@@ -15,8 +15,16 @@ EXPOSE 8000
 # Set IS_USING_IMAGE_RUNTIME Environment Variable
 ENV IS_USING_IMAGE_RUNTIME=True
 
-# Copy all files in ./src
-COPY src/* ${LAMBDA_TASK_ROOT}
-COPY src/rag_app ${LAMBDA_TASK_ROOT}/rag_app
-COPY src/data/chroma ${LAMBDA_TASK_ROOT}/data/chroma
+# Copy all relevant source files from the backend/src
+COPY backend/src/app_logic ${LAMBDA_TASK_ROOT}/app_logic
+COPY backend/src/database ${LAMBDA_TASK_ROOT}/database
+COPY backend/src/api ${LAMBDA_TASK_ROOT}/api
+
+# Copy Chroma data
+COPY backend/Chroma ${LAMBDA_TASK_ROOT}/Chroma
+
+# Copy any additional data files
+COPY backend/data ${LAMBDA_TASK_ROOT}/data
+
+
 
