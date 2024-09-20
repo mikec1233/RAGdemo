@@ -6,4 +6,3 @@ backend/data/
 backend/tests/
 frontend/rag_frontend/src/api-client/
 backend/.DS_Store
-.DS_Store
