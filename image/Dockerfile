@@ -11,8 +11,8 @@ RUN yum install -y wget tar gzip gcc make \
     && cd .. \
     && rm -rf sqlite-autoconf-3410200 sqlite-autoconf-3410200.tar.gz
 
-# Copy requirements.txt
-COPY backend/requirements.txt /var/task
+# Copy requirements.txt first to leverage Docker caching for dependencies
+COPY requirements.txt /var/task/requirements.txt
 
 # Required to make SQLite3 work for Chroma.
 RUN pip install pysqlite3-binary
@@ -26,8 +26,8 @@ EXPOSE 8000
 # Set IS_USING_IMAGE_RUNTIME Environment Variable
 ENV IS_USING_IMAGE_RUNTIME=True
 
-# Copy the entire backend folder
-COPY backend /var/task/backend
+# Copy the rest of the application files
+COPY . /var/task/backend/
 
 # Add /var/task/backend to PYTHONPATH
 ENV PYTHONPATH="/var/task/backend"
