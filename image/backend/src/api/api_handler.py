@@ -4,10 +4,11 @@ import json
 from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from backend.src.database.db_model import DBQueryModel
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.src.app_logic.query_data import query_rag
+# fixed imports for docker image
+from src.database.db_model import DBQueryModel
+from src.app_logic.query_data import query_rag
 
 CHARACTER_LIMIT = 2000
 app = FastAPI()
