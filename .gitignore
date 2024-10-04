@@ -2,9 +2,8 @@
 .venv
 __pycache__
 db_test.py
-backend/data/
+data/
 backend/tests/
 frontend/rag_frontend/src/api-client/
 backend/.DS_Store
 RAGdemo.code-workspace
-.ragatouille

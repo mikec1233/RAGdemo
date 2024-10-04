@@ -1,56 +1,99 @@
-import React, { useState } from 'react';
-import { DefaultApi, Configuration } from './api-client'; // Adjust path accordingly
-import { SubmitQueryRequest } from './api-client'; // Adjust path accordingly
+import React, { useState, useEffect } from 'react';
+import ChatForm from './components/ChatForm';
+import ChatDisplay from './components/ChatDisplay';
+import { submitQuery, getPreviousConversations } from './api/ChatService';
+import './App.css';
 
 const App: React.FC = () => {
-  const [queryText, setQueryText] = useState('');
-  const [response, setResponse] = useState<any>(null);
-//test
+  const [username, setUsername] = useState<string | null>(null); // Track the username
+  const [responses, setResponses] = useState<{ user: string; bot: string }[]>([]);
 
-  // Define the base URL in the configuration
-  const config = new Configuration({
-    basePath: 'http://localhost:8000',  // Set the correct base URL
-  });
-  const api = new DefaultApi(config); // Pass the configuration when instantiating DefaultApi
+  // Fetch previous conversations when the username is set
+  useEffect(() => {
+    if (username) {
+      (async () => {
+        try {
+          const previousConversations = await getPreviousConversations(username);
+          if (previousConversations.length > 0) {
+            // Map the previous conversations using correct camelCase fields and handle undefined answerText
+            const mappedConversations = previousConversations.map(
+              (conv) => ({
+                user: conv.queryText,                         // Corrected to use camelCase
+                bot: conv.answerText ?? 'No response',        // Handle undefined by using 'No response'
+              })
+            );
+            setResponses(mappedConversations.reverse());
+          }
+        } catch (error) {
+          console.error('Error fetching previous conversations:', error);
+        }
+      })();
+    }
+  }, [username]); // This effect runs when the username is updated
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Handler for chat submission
+  const handleChatSubmit = async (queryText: string) => {
+    if (!username) return; // Ensure username is set
 
-    const requestBody: SubmitQueryRequest = {
-      queryText: queryText,
-      userId: '1234', // Example user ID
-    };
+    // Immediately add the user's query to the chat with a placeholder for the bot's response
+    setResponses((prev) => [
+      ...prev,
+      { user: queryText, bot: '...' }, // Bot response placeholder as "..."
+    ]);
 
     try {
-      const result = await api.submitQueryEndpointSubmitQueryPost({
-        submitQueryRequest: requestBody,
-      });
-      setResponse(result);
+      // Fetch the bot's response
+      const botResponse = await submitQuery(username, queryText);
+
+      // Update the response once the bot's answer is received
+      setResponses((prev) =>
+        prev.map((resp, index) =>
+          index === prev.length - 1
+            ? { ...resp, bot: botResponse || 'No response' } // Replace the placeholder with actual response
+            : resp
+        )
+      );
     } catch (error) {
-      console.error('Error submitting query:', error);
+      // Handle errors, if bot response fails
+      setResponses((prev) =>
+        prev.map((resp, index) =>
+          index === prev.length - 1
+            ? { ...resp, bot: 'Error: Unable to get response.' }
+            : resp
+        )
+      );
     }
   };
 
-  return (
-    <div>
-      <h1>Submit a Query</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="queryText">Query Text</label>
-        <input
-          type="text"
-          id="queryText"
-          value={queryText}
-          onChange={(e) => setQueryText(e.target.value)}
-        />
-        <button type="submit">Submit Query</button>
-      </form>
+  // Handler for username submission
+  const handleUsernameSubmit = (name: string) => {
+    setUsername(name); // Store the username in state
+  };
 
-      {response && (
-        <div>
-          <h2>Response</h2>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </div>
-      )}
+  return (
+    <div className="app-container">
+      <h1 className="title">OpenVal Chat</h1>
+      <div className="chat-container">
+        {!username ? (
+          <div className="username-form">
+            <h2>Please enter your username</h2>
+            <input
+              type="text"
+              placeholder="Enter username"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                  handleUsernameSubmit(e.currentTarget.value.trim());
+                }
+              }}
+            />
+          </div>
+        ) : (
+          <>
+            <ChatDisplay responses={responses} username={username}/>
+            <ChatForm onSubmit={handleChatSubmit} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

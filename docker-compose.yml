@@ -1,0 +1,62 @@
+services:
+  ## OpenSearch 
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    container_name: opensearch
+    environment:
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+      - OPENSEARCH_USERNAME=${OPENSEARCH_USERNAME}
+      - OPENSEARCH_PASSWORD=${OPENSEARCH_PASSWORD}
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true 
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" 
+      - DISABLE_SECURITY_PLUGIN=true ## THIS NEEDS TO CHANGE, ONLY FOR TESTING LOCALLY ! VERY IMPORTANT WE GET CERTIFICATES !!!!!!!
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"  # OpenSearch REST API
+      - "9600:9600"  # OpenSearch Performance Analyzer
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    networks:
+      - app-network
+
+  ## API
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" 
+    depends_on:
+      - opensearch
+    networks:
+      - app-network
+    volumes:
+      - ./api/app:/code/app
+
+  
+  ##Frontend
+  frontend: 
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    volumes:
+      - ./frontend/rag_frontend:/app
+      
+  
+    
+volumes:
+  opensearch-data:  # Defined volume for data persistence
+  
+networks:
+  app-network:  # Custom bridge network
