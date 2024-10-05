@@ -72,7 +72,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <h1 className="title">OpenVal Chat</h1>
+      <h1 className="title">OpenVal® Chat</h1>
       <div className="chat-container">
         {!username ? (
           <div className="username-form">
