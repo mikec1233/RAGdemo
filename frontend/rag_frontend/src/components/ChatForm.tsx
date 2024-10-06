@@ -24,6 +24,7 @@ const ChatForm: React.FC<ChatFormProps> = ({ onSubmit }) => {
         placeholder="Enter your query"
         value={queryText}
         onChange={(e) => setQueryText(e.target.value)}
+        autoComplete="off"  // Added to disable autofill suggestions
       />
       <button type="submit" className="submit-btn">Submit</button>
     </form>
