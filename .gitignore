@@ -7,3 +7,4 @@ backend/tests/
 frontend/rag_frontend/src/api-client/
 backend/.DS_Store
 RAGdemo.code-workspace
+node_modules/
