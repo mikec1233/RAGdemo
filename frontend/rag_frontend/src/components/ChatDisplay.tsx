@@ -10,11 +10,15 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) => {
     <div className="chat-display">
       {responses.map((res, index) => (
         <div key={index} className="message">
+          <div className="user-message-container">
           <div className="user-message">
             <strong>{username}:</strong> {res.user}
           </div>
+        </div>
+          <div className="bot-message-container">
           <div className="bot-message">
             {res.bot}
+            </div>
           </div>
         </div>
       ))}

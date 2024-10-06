@@ -20,8 +20,9 @@
   
   .chat-container {
     background-color: #fff;
-    width: 80wh;
-    height: 80vh;
+    width: 80%;
+    height: 80%;
+    
     /*
     width: 400px;
     max-height: 600px;
@@ -47,20 +48,57 @@
   .user-message {
     background-color: #e1ffc7;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-bottom: 5px;
     font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 60%;
+    align-self: flex-end;
+    word-wrap: break-word;
     /*
-    text-align: right;
+        background-color: #0084ff;  A light blue background
+        color: #ffffff; White text color 
+        padding: 10px; /* Padding around the text 
+        border-radius: 20px; /* Rounded corners 
+        margin: 10px 0; /* Spacing around the message 
+        max-width: 60%; /* Limit the width of the message box 
+        align-self: flex-end; /* Aligns the message to the right 
+        font-family: Arial, sans-serif; /* Font styling 
+        font-size: 14px;
+        word-wrap: break-word; /* Ensures long words wrap to the next line 
+        text-align: left;
     */
+  }
+  .user-message-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns user's messages to the right */
   }
   
   .bot-message {
     background-color: #f0f0f0;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-bottom: 5px;
     font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 60%;
+    /*
+    background-color: #2898ec;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: medium;
+    position: relative;
+    width: 184.5px;
+    margin-left: auto;
+    text-align: left;
+    */
+  }
+
+  .bot-message-container {
+    display: flex;
+    justify-content: flex-start; /* Aligns bots's messages to the left */
   }
   
   /* Chat Form Styles */
