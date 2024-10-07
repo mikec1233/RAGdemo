@@ -74,9 +74,11 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       <h1 className="title">OpenVal® Chat</h1>
-      <div className="chat-container">
+
         {!username ? (
+          <div className="username-container">
           <div className="username-form">
+          
             <h2>Please enter your username</h2>
             <input
               type="text"
@@ -87,15 +89,17 @@ const App: React.FC = () => {
                 }
               }}
             />
+            </div>
           </div>
         ) : (
+          <div className="chat-container">
           <>
             <ChatDisplay responses={responses} username={username} />
             <ChatForm onSubmit={handleChatSubmit} />
           </>
+          </div>
         )}
       </div>
-    </div>
   );
 };
 
