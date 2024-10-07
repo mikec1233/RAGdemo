@@ -1,114 +1,188 @@
-/* App.css */
+/* App.css - Modernized with Centered Input, Enhanced Readability, and Past Conversations Section */
+
+/* Color Palette */
+:root {
+  --palette1: #3182CE;
+  --palette2: #2B6CB0;
+  --palette3: #1A202C;
+  --palette4: #2D3748;
+  --palette5: #4A5568;
+  --palette6: #718096;
+  --palette7: #EDF2F7;
+  --palette8: #F7FAFC;
+  --palette9: #ffffff;
+}
 
 /* Overall App Styles */
 .app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-  }
-  
-  .title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .chat-container {
-    background-color: #fff;
-    width: 400px;
-    max-height: 600px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Chat Display Styles */
-  .chat-display {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 20px;
-  }
-  
-  .message {
-    margin-bottom: 15px;
-  }
-  
-  .user-message {
-    background-color: #e1ffc7;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-  }
-  
-  .bot-message {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-  }
-  
-  /* Chat Form Styles */
-  .chat-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-field {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .submit-btn {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .submit-btn:hover {
-    background-color: #0056b3;
-  }
- /* Styles for username form */
-.username-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .username-form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    margin-top: 10px;
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-  }
-  
-  .username-form h2 {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .username-form input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--palette3) 50%, var(--palette4) 50%);
+  font-family: 'Poppins', sans-serif;
+  color: var(--palette7);
+  position: relative;
+  padding: 20px;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--palette9);
+  letter-spacing: 1.5px;
+  background: linear-gradient(45deg, var(--palette1), var(--palette2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Chat Container Styles */
+.chat-container {
+  background-color: var(--palette4);
+  width: 500px;
+  max-height: 620px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.chat-display {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  background-color: var(--palette5);
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+.message {
+  margin-bottom: 15px;
+}
+
+.user-message {
+  background-color: var(--palette1);
+  color: var(--palette9);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.bot-message {
+  background-color: var(--palette6);
+  color: var(--palette9);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Chat Form Styles - Centered and Modernized */
+.chat-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.input-field {
+  background-color: var(--palette5);
+  color: var(--palette9);
+  padding: 15px;
+  margin-right: 10px;
+  border: 1px solid var(--palette6);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  width: 75%;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--palette1);
+}
+
+.submit-btn {
+  padding: 15px;
+  background: linear-gradient(45deg, var(--palette1), var(--palette2));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  width: 20%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Section for Previous Conversations */
+.past-conversations-container {
+  background-color: var(--palette5);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 1.1rem;
+  overflow-y: auto;
+}
+
+.past-conversations-container h2 {
+  color: var(--palette9);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.conversation {
+  background-color: var(--palette4);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: var(--palette7);
+  font-size: 1rem;
+}
+
+.conversation:hover {
+  background-color: var(--palette3);
+  cursor: pointer;
+}
+
+/* Scrollbar Customization */
+.chat-display,
+.past-conversations-container {
+  overflow-y: scroll;
+  max-height: 400px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--palette1) var(--palette4);
+}
+
+.chat-display::-webkit-scrollbar,
+.past-conversations-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-display::-webkit-scrollbar-thumb,
+.past-conversations-container::-webkit-scrollbar-thumb {
+  background-color: var(--palette1);
+  border-radius: 10px;
+}
