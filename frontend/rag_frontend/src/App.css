@@ -1,6 +1,19 @@
 /* App.css */
 
 /* Overall App Styles */
+
+:root {
+  --palette1: #3182CE;
+  --palette2: #2B6CB0;
+  --palette3: #1A202C;
+  --palette4: #2D3748;
+  --palette5: #4A5568;
+  --palette6: #718096;
+  --palette7: #EDF2F7;
+  --palette8: #F7FAFC;
+  --palette9: #ffffff;
+}
+
 body {
   margin: 0; /* Removes white border around .app-container */
   background: rgba(29, 37, 45, 1);
@@ -57,8 +70,9 @@ body {
     max-height: 80%;
     */
 
-  width: 80%;
-  height: 500px;
+  width: 60%;
+  height: 80%;
+  /* height: 400px; */
 
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -72,6 +86,7 @@ body {
   flex: 1;
   overflow-y: auto;
   margin-bottom: 20px;
+  height: 80%;
 }
 
 .message {
@@ -114,15 +129,19 @@ body {
 /* Chat Form Styles */
 .chat-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .input-field {
   padding: 10px;
-  margin-bottom: 10px;
+  margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 1rem;
+  width: 75%;
   outline: none; /* removes blue outline when inputting text */
 }
 
@@ -131,9 +150,10 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 1rem;
+  width: 25%;
 }
 /*
 .submit-btn-v2 {
