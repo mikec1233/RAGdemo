@@ -54,7 +54,7 @@ body {
     */
 
   width: 400px;
-  max-height: 600px;
+  max-height: 70vh;
 
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -65,20 +65,20 @@ body {
 
 .chat-container {
   background-color: #fff;
-  /*
+  /*  
     max-width: 80%;
     max-height: 80%;
     */
 
   width: 60%;
-  height: 80%;
-  /* height: 400px; */
 
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  max-height: 70vh;
 }
 
 /* Chat Display Styles */
@@ -130,9 +130,10 @@ body {
 .chat-form {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between;
+  align-items: center; */
   width: 100%;
+  gap: 10px;
 }
 
 .input-field {
@@ -203,7 +204,6 @@ body {
 /* Scrollbar customization */
 .chat-display {
   overflow-y: scroll;
-  max-height: 400px;
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }

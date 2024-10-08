@@ -15,7 +15,7 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) =>  {
   }, [responses]);
 
   return (
-    <div className="chat-display"  style={{ overflowY: 'scroll', maxHeight: '400px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+    <div className="chat-display"  style={{ overflowY: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {responses.map((res, index) => (
         <div key={index} className="message">
           <div className="user-message-container">
