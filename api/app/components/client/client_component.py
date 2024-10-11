@@ -1,8 +1,9 @@
 from llama_index.vector_stores.opensearch import OpensearchVectorClient
 from typing import Tuple
+from app.settings.settings import Settings
 
 class ClientFactory:
-    def __init__(self, endpoint:str, index:str, dim:int, embedding_field:str, text_field:str):
+    def __init__(self, endpoint:str, index:str, dim:int, embedding_field:str, text_field:str, settings:Settings):
         self.endpoint = endpoint
         self.index = index
         self.dim = dim
