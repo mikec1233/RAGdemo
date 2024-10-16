@@ -5,4 +5,6 @@ db_test.py
 backend/data/
 backend/tests/
 frontend/rag_frontend/src/api-client/
+iamge
 backend/.DS_Store
+image/sfrontend/rag_frontend/node_modules
