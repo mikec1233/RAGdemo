@@ -41,6 +41,10 @@ class EmbeddingModelSettings(BaseModel):
         description="dimensions of embedding model"
     )
 
+### TRANSFORMATION SETTINGS----- IMPLEMENT LATER #####
+class TransformationSettings(BaseModel):
+    model:list
+
 
 class Settings(BaseModel):
     index:IndexSettings
