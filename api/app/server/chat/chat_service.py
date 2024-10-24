@@ -14,5 +14,3 @@ class ChatService:
         print("Hello, World! from query method")
         return "Hello, World!"
     
-    ClientComponent(global_settings)
-    
