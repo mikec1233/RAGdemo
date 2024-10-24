@@ -1,0 +1,19 @@
+# Settings for IndexSettings
+index:
+  endpoint: "http://localhost:9200"
+  index: "docdemo"
+  dim: 1536
+  embedding_field: "embedding"
+  text_field: "content"
+
+
+# Settings for LLMSettings
+llm:
+  model: "gpt-3.5-turbo"
+  temperature: 0.1
+
+
+# Settings for EmbeddingModelSettings
+embedding:
+  model: "text-embedding-3-large"
+  dimensions: 512

@@ -1,26 +1,49 @@
-from llama_index.embeddings.openai import OpenAIEmbedding
-from llama_index.llms.openai import OpenAI
-from llama_index.core.node_parser import SentenceSplitter
-import tiktoken
-from llama_index.core.extractors import TitleExtractor
-from llama_index.core import Settings
+from pydantic import BaseModel, Field
 
-Settings.embed_model = OpenAIEmbedding(
-    model= "text-embedding-3-large",
-    dimensions=1024)
 
-Settings.llm = OpenAI(
-    model = "gpt-3.5-turbo",
-    temperature = 0.1,
-)
+### INDEX SETTINGS ####
+class IndexSettings(BaseModel):
+    endpoint: str = Field(
+        description="Http endpoint for connection to database",
+    )
+    index: str = Field(
+        description="Name of index, will create index with name given if one is not found",
+    )
+    dim: int = Field(
+        description="Dimensions of vector store of given index",
+    )
+    embedding_field: str = Field(
+        description="Name of the field in the index to store embedding array in",
+        default="embedding",
+    )
+    text_field: str = Field(
+        description="Name of the field to grab text from",
+        default="content",
+    )
 
-Settings.tokenizer = tiktoken.encoding_for_model(
-    "gpt-3.5-turbo").encode
 
-Settings.transformations = [
-    SentenceSplitter(chunk_size=1024, chunk_overlap=50),
-    TitleExtractor(),
-    Settings.embed_model,
-    ]
+### LLM SETTINGS ###
+class LLMSettings(BaseModel):
+    model: str = Field(
+        description="Name of LLM Model used"
+    )
+    temperature: float = Field(
+        description="temp of LLM, i.e how much it will hallucinate"
+    )
 
+
+### EMBEDDING MODEL SETTINGS ###
+class EmbeddingModelSettings(BaseModel):
+    model: str = Field(
+        description="Name of embedding model"
+    )
+    dimensions: int = Field(
+        description="dimensions of embedding model"
+    )
+
+
+class Settings(BaseModel):
+    index:IndexSettings
+    llm:LLMSettings
+    embedding:EmbeddingModelSettings
 
