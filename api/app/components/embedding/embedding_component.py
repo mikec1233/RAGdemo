@@ -1,6 +1,6 @@
 from llama_index.core.embeddings import BaseEmbedding
 from llama_index.embeddings.openai import OpenAIEmbedding
-from api.app.components.settings.settings import Settings
+from app.settings.settings import Settings
 
 class EmbeddingComponent:
     embedding_model: BaseEmbedding
