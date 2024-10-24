@@ -11,9 +11,15 @@ index:
 llm:
   model: "gpt-3.5-turbo"
   temperature: 0.1
+  api_key: ${OPENAI_API_KEY:}
 
 
 # Settings for EmbeddingModelSettings
 embedding:
   model: "text-embedding-3-large"
   dimensions: 512
+  api_key: ${OPENAI_API_KEY:}
+
+# Settings for TransformationsSettings
+transformations:
+  []

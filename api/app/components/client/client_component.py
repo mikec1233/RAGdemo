@@ -1,5 +1,5 @@
 from llama_index.vector_stores.opensearch import OpensearchVectorClient
-from api.app.components.settings.settings import Settings
+from app.settings.settings import Settings
 
 class ClientComponent:
     endpoint: str

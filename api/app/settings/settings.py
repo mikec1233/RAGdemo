@@ -1,5 +1,8 @@
+import os
 from pydantic import BaseModel, Field
-
+from typing import List
+from llama_index.core.schema import TransformComponent
+from llama_index.core.node_parser import SentenceSplitter
 
 ### INDEX SETTINGS ####
 class IndexSettings(BaseModel):
@@ -30,6 +33,9 @@ class LLMSettings(BaseModel):
     temperature: float = Field(
         description="temp of LLM, i.e how much it will hallucinate"
     )
+    api_key: str = Field(
+        description="API key from OPENAI"
+    )
 
 
 ### EMBEDDING MODEL SETTINGS ###
@@ -40,14 +46,46 @@ class EmbeddingModelSettings(BaseModel):
     dimensions: int = Field(
         description="dimensions of embedding model"
     )
+    api_key: str = Field(
+        description="API key from OPENAI"
+    )
 
-### TRANSFORMATION SETTINGS----- IMPLEMENT LATER #####
+### TRANSFORMATION SETTINGS ###
 class TransformationSettings(BaseModel):
-    model:list
+    transformations: List[TransformComponent] = Field(
+        description="List of transformations to be applied "
+    )
 
 
 class Settings(BaseModel):
     index:IndexSettings
     llm:LLMSettings
     embedding:EmbeddingModelSettings
+    transformations:TransformationSettings
 
+
+
+global_settings = Settings(
+    index=IndexSettings(
+        endpoint="http://localhost:9200",
+        index="docdemo",
+        dim=1536,
+        embedding_field="embedding",
+        text_field="content",
+    ),
+    llm=LLMSettings(
+        model="gpt-3.5-turbo",
+        temperature=0.1,
+        api_key=os.getenv('OPENAI_API_KEY'),
+    ),
+    embedding=EmbeddingModelSettings(
+        model="openai-embedding",
+        dimensions=512,
+        api_key=os.getenv('OPENAI_API_KEY'),
+    ),
+    transformations=TransformationSettings(
+        transformations=[
+            SentenceSplitter()
+        ]
+    )
+)

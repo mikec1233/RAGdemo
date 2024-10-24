@@ -35,10 +35,12 @@ services:
       - "80:80" 
     depends_on:
       - opensearch
-    networks:
-      - app-network
     volumes:
       - ./api/app:/code/app
+    environment:
+      - OPENAI_API_KEY
+    networks:
+      - app-network
 
   
   ##Frontend
@@ -54,7 +56,6 @@ services:
       - ./frontend/rag_frontend:/app
       
   
-    
 volumes:
   opensearch-data:  # Defined volume for data persistence
   

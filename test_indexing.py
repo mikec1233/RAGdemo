@@ -6,8 +6,8 @@ from llama_index.vector_stores.opensearch import (
     OpensearchVectorStore,
 )
 from llama_index.core import VectorStoreIndex, StorageContext
-from api.app.components.settings.settings import Settings,IndexSettings,LLMSettings,EmbeddingModelSettings
-
+from api.app.settings.settings import Settings,IndexSettings,LLMSettings,EmbeddingModelSettings,TransformationSettings
+from llama_index.core.node_parser import SentenceSplitter
 
 # Load environment variables
 load_dotenv()
@@ -31,6 +31,11 @@ settings = Settings(
     embedding=EmbeddingModelSettings(
         model="openai-embedding",
         dimensions=512,
+    ),
+    transformations=TransformationSettings(
+        transformations=[
+            SentenceSplitter()
+        ]
     )
 )
 
@@ -50,5 +55,6 @@ index = VectorStoreIndex.from_documents(
     storage_context=storage_context,
 )
 
+index= VectorStoreIndex.from_vector_store(vector_store)
 
 
