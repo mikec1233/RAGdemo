@@ -7,12 +7,13 @@ chat_router = APIRouter(prefix="/v1")
 chat_service = ChatService()
 
 class QueryRequest(BaseModel):
-    message: str
+    user_input: str
 
-@chat_router.post("/query")
-async def query_chat_service(request: QueryRequest):
+@chat_router.post("/chat/query", response_model=dict)
+async def query_chat(request: QueryRequest):
     try:
-        response = await chat_service.query(request.message)
-        return {"response": response}
+        # Call the query method from ChatService
+        response = chat_service.query(request.user_input)
+        return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

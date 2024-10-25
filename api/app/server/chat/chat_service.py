@@ -7,10 +7,14 @@ from app.settings.settings import Settings, global_settings
 
 
 class ChatService:
-    def __init__(self):
-        print("Hello, World! from ChatService")
+    def __init__(self) -> None:
+        self.client=ClientComponent(global_settings).create_client()
+        self.vector_store=OpensearchVectorStore(self.client)
+        self.index=IndexingComponent(vector_store=self.vector_store,settings=global_settings).index
+        self.query_engine=self.index.as_query_engine()
 
-    async def query(self, message: str) -> str:
-        print("Hello, World! from query method")
-        return "Hello, World!"
+    def query(self, user_input: str) -> dict:
+            query_result = self.query_engine.query(user_input)
+            return query_result
+    
     
