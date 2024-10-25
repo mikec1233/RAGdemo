@@ -67,7 +67,7 @@ class Settings(BaseModel):
 
 global_settings = Settings(
     index=IndexSettings(
-        endpoint="http://localhost:9200",
+        endpoint="http://opensearch:9200",
         index="docdemo",
         dim=1536,
         embedding_field="embedding",
@@ -79,8 +79,8 @@ global_settings = Settings(
         api_key=os.getenv('OPENAI_API_KEY'),
     ),
     embedding=EmbeddingModelSettings(
-        model="openai-embedding",
-        dimensions=512,
+        model="text-embedding-3-large",
+        dimensions=1536,
         api_key=os.getenv('OPENAI_API_KEY'),
     ),
     transformations=TransformationSettings(

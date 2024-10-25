@@ -12,5 +12,5 @@ class IndexingComponent:
         self.settings = settings
         self.index = VectorStoreIndex.from_vector_store(
             vector_store = vector_store,
-            embed_model = EmbeddingComponent.embedding_model
+            embed_model = EmbeddingComponent(settings).embedding_model
         )
