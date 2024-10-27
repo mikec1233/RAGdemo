@@ -15,6 +15,6 @@ class ChatService:
 
     def query(self, user_input: str) -> dict:
             query_result = self.query_engine.query(user_input)
-            return query_result
-    
+            #return query_result
+            return {"response": query_result.response}
     
