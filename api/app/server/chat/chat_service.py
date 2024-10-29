@@ -1,6 +1,7 @@
 from dataclasses import asdict, dataclass
 from app.components.index.index_component import IndexingComponent
 from app.components.client.client_component import ClientComponent
+from app.components.query_engine.query_engine_component import QueryEngineComponent
 from app.components.llm.llm_component import LLMComponent
 from llama_index.vector_stores.opensearch import OpensearchVectorStore, OpensearchVectorClient
 from llama_index.core import VectorStoreIndex
@@ -13,7 +14,7 @@ class ChatService:
         self.client=ClientComponent(global_settings).create_client()
         self.vector_store=OpensearchVectorStore(self.client)
         self.index=IndexingComponent(vector_store=self.vector_store,settings=global_settings).index
-        self.query_engine=self.index.as_query_engine()
+        self.query_engine=QueryEngineComponent(self.index,global_settings).query_engine
         self.llm_component = LLMComponent(global_settings)
 
     #this method handles the logic for generating the responsve given the users question and the relavent docs from OpenSearch.        
