@@ -38,12 +38,13 @@ class ChatService:
 
 
             # Check for relevance threshold
-            if hasattr(query_result, "source_nodes") and query_result.source_nodes:
-                context_text = "\n\n---\n\n".join([node.node.text for node in query_result.source_nodes])
-            else:
-                return {"response": "No suitable results found"}
+            # if hasattr(query_result, "source_nodes") and query_result.source_nodes:
+            #     context_text = "\n\n---\n\n".join([node.node.text for node in query_result.source_nodes])
+            # else:
+            #     return {"response": "No suitable results found"}
+            
 
-
+            context_text = query_result
             #using context_text and the initial question generate llm response
             llm_response = self.generate_response(context=context_text, question=user_input)
             print(f"LLM response type: {type(llm_response)}")  # Debugging
