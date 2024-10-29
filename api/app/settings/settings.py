@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing import List
 from llama_index.core.schema import TransformComponent
 from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core.vector_stores.types import MetadataFilters
 
 ### INDEX SETTINGS ####
 class IndexSettings(BaseModel):
@@ -55,6 +56,31 @@ class TransformationSettings(BaseModel):
     transformations: List[TransformComponent] = Field(
         description="List of transformations to be applied "
     )
+
+### RETRIEVER SETTINGS ###
+class RetrieverSettings(BaseModel):
+    index: str = Field(
+        description = "Name of index nodes will be retrieved from"
+    )
+    query_mode:str = Field(
+        description="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    )
+    similarity_top_k: int = Field(
+        description = "How many nodes will be returned from query"
+    )
+    embed_model: str = Field(
+        description="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    )
+    filters: List[MetadataFilters] = Field(
+        description="List of metadata filters",
+        default= None,
+    )
+
+### NODE POST PROCESSING ###
+
+
+
+
 
 
 class Settings(BaseModel):
