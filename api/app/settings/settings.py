@@ -4,6 +4,9 @@ from typing import List
 from llama_index.core.schema import TransformComponent
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.vector_stores.types import MetadataFilters
+from llama_index.core.postprocessor.types import BaseNodePostprocessor
+from llama_index.core.postprocessor import SimilarityPostprocessor
+
 
 ### INDEX SETTINGS ####
 class IndexSettings(BaseModel):
@@ -54,7 +57,7 @@ class EmbeddingModelSettings(BaseModel):
 ### TRANSFORMATION SETTINGS ###
 class TransformationSettings(BaseModel):
     transformations: List[TransformComponent] = Field(
-        description="List of transformations to be applied "
+        description="List of transformations to be applied during ingestion"
     )
 
 ### RETRIEVER SETTINGS ###
@@ -62,22 +65,26 @@ class RetrieverSettings(BaseModel):
     index: str = Field(
         description = "Name of index nodes will be retrieved from"
     )
-    query_mode:str = Field(
-        description="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    )
     similarity_top_k: int = Field(
         description = "How many nodes will be returned from query"
-    )
-    embed_model: str = Field(
-        description="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     )
     filters: List[MetadataFilters] = Field(
         description="List of metadata filters",
         default= None,
     )
 
-### NODE POST PROCESSING ###
+### RESPONSE SYNTHESIZER SETTINGS ###
+class ResponseSynthesizerSettings(BaseModel):
+    response_mode:str = Field(
+        description="Defines the form of call to LLM to generate response"
+    )
 
+
+### NODE POST PROCESSING ###
+class NodePostProcessingSettings(BaseModel):
+    post_processors : List[BaseNodePostprocessor] = Field(
+        description= "Post Processing to be applied to retrieved nodes"
+    )
 
 
 
@@ -88,6 +95,10 @@ class Settings(BaseModel):
     llm:LLMSettings
     embedding:EmbeddingModelSettings
     transformations:TransformationSettings
+    retriever:RetrieverSettings
+    response:ResponseSynthesizerSettings
+    nodepostproc:NodePostProcessingSettings
+
 
 
 
@@ -112,6 +123,18 @@ global_settings = Settings(
     transformations=TransformationSettings(
         transformations=[
             SentenceSplitter()
+        ]
+    ),
+    retriever=RetrieverSettings(
+        index="docdemo",
+        similarity_top_k=3,
+    ),
+    response=ResponseSynthesizerSettings(
+        response_mode="tree_summarize",
+    ),
+    nodepostproc=NodePostProcessingSettings(
+        post_processors=[
+            SimilarityPostprocessor(similarity_cutoff=0.75)
         ]
     )
 )
