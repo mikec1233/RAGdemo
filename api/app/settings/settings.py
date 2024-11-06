@@ -116,7 +116,7 @@ global_settings = Settings(
         api_key=os.getenv('OPENAI_API_KEY'),
     ),
     embedding=EmbeddingModelSettings(
-        model="text-embedding-3-large",
+        model="text-embedding-3-small",
         dimensions=1536,
         api_key=os.getenv('OPENAI_API_KEY'),
     ),
@@ -130,7 +130,9 @@ global_settings = Settings(
         similarity_top_k=3,
     ),
     response=ResponseSynthesizerSettings(
-        response_mode="tree_summarize",
+        #Testing different response modes.
+        #response_mode="tree_summarize",
+        response_mode="context_only"
     ),
     nodepostproc=NodePostProcessingSettings(
         post_processors=[

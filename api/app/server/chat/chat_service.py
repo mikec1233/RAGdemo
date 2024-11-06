@@ -36,21 +36,31 @@ class ChatService:
             query_result = self.query_engine.query(user_input)
             print(f"Query result type: {type(query_result)}")  # Debugging
             print(f"Query result content: {query_result}")  # Debugging
-
-
-            # Check for relevance threshold
-            # if hasattr(query_result, "source_nodes") and query_result.source_nodes:
-            #     context_text = "\n\n---\n\n".join([node.node.text for node in query_result.source_nodes])
+            print(f"Query result attributes: {dir(query_result)}")
+            # if query_result.source_nodes:
+            #     print(f"Top {global_settings.retriever.similarity_top_k} results:")
+            # for i, node in enumerate(query_result.source_nodes[:global_settings.retriever.similarity_top_k], start=1):
+            #     print(f"Result {i}: {node.node.text}")  # Print the first 100 characters for brevity
             # else:
-            #     return {"response": "No suitable results found"}
-            
+            #     print("No relevant source nodes found.")
 
-            context_text = query_result
-            #using context_text and the initial question generate llm response
+            print(f"Retrieved Nodes: {[node.node.text for node in query_result.source_nodes]}")
+
+            context_text = "\n\n---\n\n".join([node.node.text for node in query_result.source_nodes[:global_settings.retriever.similarity_top_k]])
+            print("Checking: " + context_text)
+            print(f"Final context_text for LLM: {context_text}")
             llm_response = self.generate_response(context=context_text, question=user_input)
             print(f"LLM response type: {type(llm_response)}")  # Debugging
 
 
-
             return {"response": llm_response}
+
+            # context_text = query_result
+            # #using context_text and the initial question generate llm response
+            # llm_response = self.generate_response(context=context_text, question=user_input)
+            # print(f"LLM response type: {type(llm_response)}")  # Debugging
+
+
+
+            # return {"response": llm_response}
 
