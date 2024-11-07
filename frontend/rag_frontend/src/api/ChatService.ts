@@ -18,10 +18,12 @@ export const submitQuery = async (queryText: string): Promise<string> => {
 
   try {
     // Call the generated API method and cast the response to `QueryResponse`
-    const result = (await api.queryChatV1ChatQueryPost({ queryRequest: requestBody })) as QueryResponse;
+    //const result = (await api.queryChatV1ChatQueryPost({ queryRequest: requestBody })) as QueryResponse;
+    const result = (await api.queryChatV1ChatQueryPost({ queryRequest: requestBody })) as { response?: string };
 
     // Ensure to handle potential undefined values in the response
-    return result.answerText ?? "No response"; // Use a default fallback message if `answerText` is undefined
+    //return result.answerText ?? "No response"; // Use a default fallback message if `answerText` is undefined
+    return result.response ?? "No Response"
   } catch (error) {
     // Improve error logging for better debugging
     console.error("Error submitting query:", error);
