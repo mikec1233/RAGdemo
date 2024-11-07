@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import ChatForm from './components/ChatForm';
-import ChatDisplay from './components/ChatDisplay';
-import { submitQuery, getPreviousConversations } from './api/ChatService';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import ChatForm from "./components/ChatForm";
+import ChatDisplay from "./components/ChatDisplay";
+import { submitQuery, getPreviousConversations } from "./api/ChatService";
+import "./App.css";
 
 const App: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null); // Track the username
-  const [responses, setResponses] = useState<{ user: string; bot: string }[]>([]);
+  const [responses, setResponses] = useState<{ user: string; bot: string }[]>(
+    [],
+  );
 
   // Fetch previous conversations when the username is set
   useEffect(() => {
     if (username) {
       (async () => {
         try {
-          const previousConversations = await getPreviousConversations(username);
+          const previousConversations =
+            await getPreviousConversations(username);
           if (previousConversations.length > 0) {
             // Map the previous conversations using correct camelCase fields and handle undefined answerText
-            const mappedConversations = previousConversations.map(
-              (conv) => ({
-                user: conv.queryText,                         // Corrected to use camelCase
-                bot: conv.answerText ?? 'No response',        // Handle undefined by using 'No response'
-              })
-            );
+            const mappedConversations = previousConversations.map((conv) => ({
+              user: conv.queryText, // Corrected to use camelCase
+              bot: conv.answerText ?? "No response", // Handle undefined by using 'No response'
+            }));
             setResponses(mappedConversations.reverse());
           }
         } catch (error) {
-          console.error('Error fetching previous conversations:', error);
+          console.error("Error fetching previous conversations:", error);
         }
       })();
     }
@@ -38,7 +39,7 @@ const App: React.FC = () => {
     // Immediately add the user's query to the chat with a placeholder for the bot's response
     setResponses((prev) => [
       ...prev,
-      { user: queryText, bot: '...' }, // Bot response placeholder as "..."
+      { user: queryText, bot: "..." }, // Bot response placeholder as "..."
     ]);
 
     try {
@@ -49,18 +50,18 @@ const App: React.FC = () => {
       setResponses((prev) =>
         prev.map((resp, index) =>
           index === prev.length - 1
-            ? { ...resp, bot: botResponse || 'No response' } // Replace the placeholder with actual response
-            : resp
-        )
+            ? { ...resp, bot: botResponse || "No response" } // Replace the placeholder with actual response
+            : resp,
+        ),
       );
     } catch (error) {
       // Handle errors, if bot response fails
       setResponses((prev) =>
         prev.map((resp, index) =>
           index === prev.length - 1
-            ? { ...resp, bot: 'Error: Unable to get response.' }
-            : resp
-        )
+            ? { ...resp, bot: "Error: Unable to get response." }
+            : resp,
+        ),
       );
     }
   };
@@ -70,31 +71,40 @@ const App: React.FC = () => {
     setUsername(name); // Store the username in state
   };
 
+  // Handler for username submission
+  const handleUsernameSubmit = (name: string) => {
+    setUsername(name); // Store the username in state
+  };
+
   return (
     <div className="app-container">
-      <h1 className="title">OpenVal Chat</h1>
-      <div className="chat-container">
+      <h1 className="title">OpenVal® Chat</h1>
+
         {!username ? (
+          <div className="username-container">
           <div className="username-form">
+          
             <h2>Please enter your username</h2>
             <input
               type="text"
               placeholder="Enter username"
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                if (e.key === "Enter" && e.currentTarget.value.trim()) {
                   handleUsernameSubmit(e.currentTarget.value.trim());
                 }
               }}
             />
+            </div>
           </div>
         ) : (
+          <div className="chat-container">
           <>
-            <ChatDisplay responses={responses} username={username}/>
+            <ChatDisplay responses={responses} username={username} />
             <ChatForm onSubmit={handleChatSubmit} />
           </>
+          </div>
         )}
       </div>
-    </div>
   );
 };
 

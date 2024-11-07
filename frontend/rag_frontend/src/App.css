@@ -1,125 +1,204 @@
-/* App.css */
-
 /* Overall App Styles */
-.app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-  }
-  
-  .title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .chat-container {
-    background-color: #fff;
-    width: 400px;
-    max-height: 600px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Chat Display Styles */
-  .chat-display {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 20px;
-  }
-  
-  .message {
-    margin-bottom: 15px;
-  }
-  
-  .user-message {
-    background-color: #e1ffc7;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-  }
-  
-  .bot-message {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-  }
-  
-  /* Chat Form Styles */
-  .chat-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-field {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .submit-btn {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .submit-btn:hover {
-    background-color: #0056b3;
-  }
- /* Styles for username form */
-.username-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .username-form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    margin-top: 10px;
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-  }
-  
-  .username-form h2 {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .username-form input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
+:root {
+  --palette1: #3182CE;
+  --palette2: #2B6CB0;
+  --palette3: #1A202C;
+  --palette4: #2D3748;
+  --palette5: #4A5568;
+  --palette6: #718096;
+  --palette7: #EDF2F7;
+  --palette8: #F7FAFC;
+  --palette9: #ffffff;
+}
 
-  .chat-display {
-    overflow-y: scroll;
-    max-height: 400px;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+body {
+  margin: 0;
+  background: rgba(29, 37, 45, 1);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust to full viewport height */
+  width: 100vw;  /* Adjust to full viewport width */
+  background: linear-gradient(
+    60deg,
+    rgba(29, 37, 45, 1) 0%,
+    rgba(0, 79, 91, 1) 26%,
+    rgba(0, 79, 91, 1) 40%,
+    rgba(29, 37, 45, 1) 100%
+  );
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 3vw; /* Responsive font size */
+  color: #86cac6;
+  margin-bottom: 20px;
+  font-family: "prometo", sans-serif;
+}
+
+.username-container {
+  background-color: #86cac6;
+  width: 400px;            /* Fixed width */
+  aspect-ratio: 3 / 1;     /* Maintain aspect ratio */
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;     /* Center content horizontally */
+  max-height: 70vh;        /* Max height based on viewport */
+  max-width: 80vw;         /* Limit max width for responsiveness */
+}
+
+
+
+.chat-container {
+  background-color: #fff;
+  width: 80vw; /* Responsive width */
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh; /* Adjust max height for responsiveness */
+}
+
+/* Chat Display Styles */
+.chat-display {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.message {
+  margin-bottom: 15px;
+}
+
+.user-message {
+  background-color: #def1f0;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  font-size: 1.2vw;  /* Responsive font size */
+  line-height: 1.5;
+  max-width: 60%;
+  align-self: flex-end;
+  word-wrap: break-word;
+}
+
+.user-message-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bot-message {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 0px;
+  font-size: 1.2vw; /* Responsive font size */
+  line-height: 1.5;
+  max-width: 60%;
+  align-self: flex-start;
+  word-wrap: break-word;
+}
+
+.bot-message-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Chat Form Styles */
+.chat-form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+
+.input-field {
+  padding: 1vw; /* Responsive padding */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1.2vw; /* Responsive font size */
+  width: 90%;
+  outline: none;
+}
+
+.submit-btn {
+  padding: 1vw; /* Responsive padding */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.2vw; /* Responsive font size */
+  width: 10%;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.username-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.username-form input {
+  padding: 1vw; /* Responsive padding */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 1.2vw; /* Responsive font size */
+  margin-top: 10px;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.username-form h2 {
+  font-size: 1.5vw; /* Responsive font size */
+  color: #004f5b;
+}
+
+.username-form input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Scrollbar customization */
+.chat-display {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chat-display::-webkit-scrollbar {
+  display: none;
+}
+
+/* Media Queries for Aspect Ratios */
+@media (aspect-ratio: 16 / 9) {
+  .app-container {
+    background-color: #004f5b;
   }
-  
-  .chat-display::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
+}
+
+@media (aspect-ratio: 4 / 3) {
+  .app-container {
+    background-color: #2d3748;
   }
-  
+}
