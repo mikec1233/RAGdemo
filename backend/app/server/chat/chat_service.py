@@ -34,6 +34,7 @@ class ChatService:
             
             #take user input, send to query_engine and get the result (later change to top 3 results)
             query_result = self.query_engine.query(user_input)
+            print(f"User Query: {user_input}")
             print(f"Query result type: {type(query_result)}")  # Debugging
             print(f"Query result content: {query_result}")  # Debugging
             print(f"Query result attributes: {dir(query_result)}")

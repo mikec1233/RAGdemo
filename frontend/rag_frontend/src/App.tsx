@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChatForm from "./components/ChatForm";
 import ChatDisplay from "./components/ChatDisplay";
-import { submitQuery, getPreviousConversations } from "./api/ChatService";
+import { submitQuery } from "./api/ChatService";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -9,28 +9,6 @@ const App: React.FC = () => {
   const [responses, setResponses] = useState<{ user: string; bot: string }[]>(
     [],
   );
-
-  // Fetch previous conversations when the username is set
-  useEffect(() => {
-    if (username) {
-      (async () => {
-        try {
-          const previousConversations =
-            await getPreviousConversations(username);
-          if (previousConversations.length > 0) {
-            // Map the previous conversations using correct camelCase fields and handle undefined answerText
-            const mappedConversations = previousConversations.map((conv) => ({
-              user: conv.queryText, // Corrected to use camelCase
-              bot: conv.answerText ?? "No response", // Handle undefined by using 'No response'
-            }));
-            setResponses(mappedConversations.reverse());
-          }
-        } catch (error) {
-          console.error("Error fetching previous conversations:", error);
-        }
-      })();
-    }
-  }, [username]); // This effect runs when the username is updated
 
   // Handler for chat submission
   const handleChatSubmit = async (queryText: string) => {
@@ -44,7 +22,7 @@ const App: React.FC = () => {
 
     try {
       // Fetch the bot's response
-      const botResponse = await submitQuery(username, queryText);
+      const botResponse = await submitQuery(queryText);
 
       // Update the response once the bot's answer is received
       setResponses((prev) =>

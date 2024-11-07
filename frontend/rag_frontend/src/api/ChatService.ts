@@ -1,42 +1,30 @@
-import { DefaultApi, Configuration } from "../api-client"; // Import the generated API client
-import { SubmitQueryRequest, DBQueryModel } from "../api-client"; // Correct imports
+import { DefaultApi } from "../api-client/apis"; // Import the generated API client
+import { QueryRequest } from "../api-client/models"; // Import the necessary model type
 
-// Configure the base URL for your API
-const config = new Configuration({
-  basePath: "http://localhost:8000", // Set the correct base URL
-});
-const api = new DefaultApi(config);
+// Define the interface for the API response
+interface QueryResponse {
+  answerText?: string; // Optional property as it may be undefined
+}
 
-// Fetch previous conversations for a user
-export const getPreviousConversations = async (
-  userId: string,
-): Promise<DBQueryModel[]> => {
-  try {
-    const response = await api.listQueryEndpointListQueriesGet({ userId });
-    return response; // Returns an array of DBQueryModel
-  } catch (error) {
-    console.error("Error fetching previous conversations:", error);
-    throw error;
-  }
-};
+// Initialize the DefaultApi instance
+const api = new DefaultApi();
 
 // Service function to submit the query
-export const submitQuery = async (
-  username: string,
-  queryText: string,
-): Promise<string> => {
-  const requestBody: SubmitQueryRequest = {
-    queryText: queryText,
-    userId: username, // Pass username instead of hardcoded user ID
+export const submitQuery = async (queryText: string): Promise<string> => {
+  // Create a request body matching the `QueryRequest` type
+  const requestBody: QueryRequest = {
+    userInput: queryText, // Align with the defined structure in your models
   };
 
   try {
-    const result = await api.submitQueryEndpointSubmitQueryPost({
-      submitQueryRequest: requestBody,
-    });
-    return result.answerText || ""; // Return the bot's response (answerText)
+    // Call the generated API method and cast the response to `QueryResponse`
+    const result = (await api.queryChatV1ChatQueryPost({ queryRequest: requestBody })) as QueryResponse;
+
+    // Ensure to handle potential undefined values in the response
+    return result.answerText ?? "No response"; // Use a default fallback message if `answerText` is undefined
   } catch (error) {
+    // Improve error logging for better debugging
     console.error("Error submitting query:", error);
-    throw error;
+    throw new Error("Failed to submit the query. Please try again later.");
   }
 };
