@@ -202,3 +202,17 @@ body {
     background-color: #2d3748;
   }
 }
+
+.code-block-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.text-with-code-blocks p {
+  margin-bottom: 1em;
+}
+
+.text-with-code-blocks pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

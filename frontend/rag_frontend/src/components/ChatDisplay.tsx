@@ -24,7 +24,7 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) =>  {
               <strong>{username}:</strong> {res.user}
             </div>
           </div>
-          <div className="bot-message-container">
+          <div className="bot-message-container code-block-wrapper">
               <TextWithCodeBlocks text={res.bot} />
           </div>
         </div>
