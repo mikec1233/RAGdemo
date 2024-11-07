@@ -132,11 +132,12 @@ global_settings = Settings(
     response=ResponseSynthesizerSettings(
         #Testing different response modes.
         #response_mode="tree_summarize",
+
         response_mode="context_only"
     ),
     nodepostproc=NodePostProcessingSettings(
         post_processors=[
-            SimilarityPostprocessor(similarity_cutoff=0.75)
+            SimilarityPostprocessor(similarity_cutoff=0.1)
         ]
     )
 )

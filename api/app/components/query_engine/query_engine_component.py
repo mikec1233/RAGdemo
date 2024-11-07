@@ -21,4 +21,5 @@ class QueryEngineComponent:
             response_synthesizer=get_response_synthesizer(
                     response_mode=settings.response.response_mode,
                 ),
+            node_postprocessors=settings.nodepostproc.post_processors
             )
