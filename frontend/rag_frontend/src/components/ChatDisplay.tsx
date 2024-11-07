@@ -1,4 +1,5 @@
 import React, { useEffect, useRef} from "react";
+import TextWithCodeBlocks from "./TextWithCodeBlocks";
 
 interface ChatDisplayProps {
   responses: { user: string; bot: string }[];
@@ -24,7 +25,7 @@ const ChatDisplay: React.FC<ChatDisplayProps> = ({ responses, username }) =>  {
             </div>
           </div>
           <div className="bot-message-container">
-            <div className="bot-message">{res.bot}</div>
+              <TextWithCodeBlocks text={res.bot} />
           </div>
         </div>
       ))}
