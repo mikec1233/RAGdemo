@@ -27,16 +27,16 @@ services:
       - app-network
 
   ## API
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "80:80" 
     depends_on:
       - opensearch
     volumes:
-      - ./api/app:/code/app
+      - ./backend/app:/code/app
     environment:
       - OPENAI_API_KEY
     networks:

@@ -71,11 +71,6 @@ const App: React.FC = () => {
     setUsername(name); // Store the username in state
   };
 
-  // Handler for username submission
-  const handleUsernameSubmit = (name: string) => {
-    setUsername(name); // Store the username in state
-  };
-
   return (
     <div className="app-container">
       <h1 className="title">OpenVal® Chat</h1>
