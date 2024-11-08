@@ -85,7 +85,7 @@ body {
 }
 
 .user-message {
-  background-color: #def1f0;
+  background-color: #86cac6;
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 15px;
@@ -94,6 +94,7 @@ body {
   max-width: 60%;
   align-self: flex-end;
   word-wrap: break-word;
+  color: #292929;
 }
 
 .user-message-container {
@@ -137,8 +138,8 @@ body {
 
 .submit-btn {
   padding: 1vw; /* Responsive padding */
-  background-color: #007bff;
-  color: white;
+  background-color: #86cac6;
+  color: #292929;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -147,7 +148,7 @@ body {
 }
 
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #69bdb7;
 }
 
 .username-form {
