@@ -62,6 +62,8 @@ body {
 
 .chat-container {
   background-color: #fff;
+  padding: 0 2rem; /* Add padding on both sides for white space */
+  justify-content: space-between;
   width: 80vw; /* Responsive width */
   aspect-ratio: 16 / 9; /* Maintain aspect ratio */
   border-radius: 20px;
@@ -69,14 +71,19 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  max-height: 70vh; /* Adjust max height for responsiveness */
+  margin: 0 auto;
+  height: 100%; /* Adjust max height for responsiveness */
+  max-width: 800px; /* Set a max width to prevent it from stretching too much on wide screens */
 }
 
 /* Chat Display Styles */
 .chat-display {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 20px;
+  margin: 0 auto; /* Center align the display */
+  width: 100%; /* Ensure it fills the container */
+  max-width: 800px; /* Limit the width */
+  padding: 1rem; /* Add padding inside the display for extra spacing */
   height: 100%;
 }
 

@@ -52,6 +52,7 @@ class ChatService:
             print(f"Final context_text for LLM: {context_text}")
             llm_response = self.generate_response(context=context_text, question=user_input)
             print(f"LLM response type: {type(llm_response)}")  # Debugging
+            print(f"LLM RESPONSE: " + llm_response)
 
 
             return {"response": llm_response}
