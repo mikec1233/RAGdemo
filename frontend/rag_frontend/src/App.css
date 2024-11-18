@@ -144,7 +144,7 @@ body {
 }
 
 .submit-btn {
-  padding: 1vw; /* Responsive padding */
+  /*padding: 1vw; /* Responsive padding */
   background-color: #86cac6;
   color: #292929;
   border: none;
