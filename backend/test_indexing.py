@@ -79,13 +79,13 @@ if __name__ == "__main__":
 
     # Load documents from the specified directory
     print("Loading documents from directory:", files)
-    #html files
-    documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".html"]).load_data(show_progress=True)
+    #html files ## Patricked added .RMD to this line --remove if wrong
+    documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".html",".Rmd"]).load_data(show_progress=True)
     #.Rmd
     #documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".Rmd"]).load_data(show_progress=True)
 
     # Run the pipeline to ingest documents into the vector store
     pipeline.run(documents=documents)
     #caching and par. processing not set up - will be useful later. 
-
+    
     print("Ingestion completed.")

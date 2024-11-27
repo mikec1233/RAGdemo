@@ -214,6 +214,14 @@ body {
 .code-block-wrapper {
   max-width: 100%;
   overflow-x: auto;
+/*   background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 0px;
+  font-size: 1.2vw;
+  line-height: 1.5;
+  align-self: flex-start;
+  word-wrap: break-word; */
 }
 
 .text-with-code-blocks p {
@@ -223,4 +231,44 @@ body {
 .text-with-code-blocks pre {
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+
+/* Side Bar */
+
+.history-container{
+  max-width: 20%;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  background-color: #004f5b;
+}
+
+.dropdown-btn {
+  /*padding: 1vw; /* Responsive padding */
+  background-color: #86cac6;
+  color: #292929;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.2vw; /* Responsive font size */
+  width: 10%;
+}
+
+.history-button {
+  position: absolute;
+  top: 10px; /* Adjust if needed */
+  left: 10px;
+  padding: 10px 20px;
+  background-color: #59ff00; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.history-button:hover {
+  background-color: #0056b3;
 }

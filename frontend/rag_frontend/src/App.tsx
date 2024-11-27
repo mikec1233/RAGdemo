@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChatForm from "./components/ChatForm";
 import ChatDisplay from "./components/ChatDisplay";
+import HistoryButton from './components/HistoryButton';
 import { submitQuery } from "./api/ChatService";
 import "./App.css";
 
@@ -49,10 +50,17 @@ const App: React.FC = () => {
     setUsername(name); // Store the username in state
   };
 
+  const handleButtonClick = () => {
+    alert("Button clicked!");
+  };
+
   return (
     <div className="app-container">
       {/* <h1 className="title">OpenVal® Chat</h1> */}
 
+      {/* Top-left button */}
+      <HistoryButton onClick={handleButtonClick} label="History" />
+      
         {!username ? (
           <div className="username-container">
           <div className="username-form">
