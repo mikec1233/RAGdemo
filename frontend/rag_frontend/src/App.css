@@ -236,13 +236,6 @@ body {
 
 /* Side Bar */
 
-.history-container{
-  max-width: 20%;
-  height: 100%;
-  align-items: center;
-  flex-direction: column;
-  background-color: #004f5b;
-}
 
 .dropdown-btn {
   /*padding: 1vw; /* Responsive padding */
@@ -260,7 +253,7 @@ body {
   top: 10px; /* Adjust if needed */
   left: 10px;
   padding: 10px 20px;
-  background-color: #59ff00; /* Button color */
+  background-color: #86cac6; /* Button color */
   color: white;
   border: none;
   border-radius: 5px;
@@ -270,5 +263,32 @@ body {
 }
 
 .history-button:hover {
-  background-color: #0056b3;
+  background-color: #69bdb7;
 }
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px; /* Adjust based on button height */
+  left: 0;
+  width: 150px; /* Adjust to fit content */
+  background-color: #004f5b;
+  padding: 1rem;
+  z-index: 999; /* Ensure dropdown appears above other elements */
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #69bdb7;
+}
+

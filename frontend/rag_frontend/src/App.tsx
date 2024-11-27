@@ -57,9 +57,6 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       {/* <h1 className="title">OpenVal® Chat</h1> */}
-
-      {/* Top-left button */}
-      <HistoryButton onClick={handleButtonClick} label="History" />
       
         {!username ? (
           <div className="username-container">
@@ -79,6 +76,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="chat-container">
+            <HistoryButton onClick={handleButtonClick} label="History" />
           <>
             <ChatDisplay responses={responses} username={username} />
             <ChatForm onSubmit={handleChatSubmit} />
