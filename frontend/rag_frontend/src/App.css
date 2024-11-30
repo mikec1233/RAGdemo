@@ -96,7 +96,7 @@ body {
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 15px;
-  font-size: 1.2vw;  /* Responsive font size */
+  font-size: 1.0vw;  /* Responsive font size */
   line-height: 1.5;
   max-width: 60%;
   align-self: flex-end;
@@ -114,7 +114,7 @@ body {
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 0px;
-  font-size: 1.2vw; /* Responsive font size */
+  font-size: 1.0vw; /* Responsive font size */
   line-height: 1.5;
   max-width: 60%;
   align-self: flex-start;
@@ -138,7 +138,7 @@ body {
   padding: 1vw; /* Responsive padding */
   border: 1px solid #ccc;
   border-radius: 20px;
-  font-size: 1.2vw; /* Responsive font size */
+  font-size: 1.0vw; /* Responsive font size */
   width: 90%;
   outline: none;
 }
@@ -150,7 +150,7 @@ body {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 1.2vw; /* Responsive font size */
+  font-size: 1.0vw; /* Responsive font size */
   width: 10%;
 }
 
@@ -170,7 +170,7 @@ body {
   padding: 1vw; /* Responsive padding */
   border-radius: 20px;
   border: 1px solid #ccc;
-  font-size: 1.2vw; /* Responsive font size */
+  font-size: 1.0vw; /* Responsive font size */
   margin-top: 10px;
   width: 80%;
   max-width: 300px;
@@ -214,14 +214,14 @@ body {
 .code-block-wrapper {
   max-width: 100%;
   overflow-x: auto;
-/*   background-color: #f0f0f0;
+  background-color: #f0f0f0;
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 0px;
-  font-size: 1.2vw;
+  font-size: 1.0vw;
   line-height: 1.5;
   align-self: flex-start;
-  word-wrap: break-word; */
+  word-wrap: break-word;
 }
 
 .text-with-code-blocks p {
@@ -237,58 +237,60 @@ body {
 /* Side Bar */
 
 
-.dropdown-btn {
-  /*padding: 1vw; /* Responsive padding */
-  background-color: #86cac6;
-  color: #292929;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 1.2vw; /* Responsive font size */
-  width: 10%;
+body {
+  font-family: "Lato", sans-serif;
 }
 
-.history-button {
-  position: absolute;
-  top: 10px; /* Adjust if needed */
-  left: 10px;
-  padding: 10px 20px;
-  background-color: #86cac6; /* Button color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  z-index: 1000; /* Ensure it appears above other elements */
-}
-
-.history-button:hover {
-  background-color: #69bdb7;
-}
-
-
-.dropdown-menu {
-  position: absolute;
-  top: 45px; /* Adjust based on button height */
+.sidebar {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 150px; /* Adjust to fit content */
   background-color: #004f5b;
-  padding: 1rem;
-  z-index: 999; /* Ensure dropdown appears above other elements */
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+  overflow-x: hidden;
+  transition: width 0.5s;
+  padding-top: 0px;
+
+}
+
+.sidebar-open {
+  width: 250px;
 }
 
 .menu-item {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
+  padding: 10px;
   color: white;
-  cursor: pointer;
+  border-bottom: 1px solid #818181;
+  transition: background-color 0.3s;
 }
 
 .menu-item:hover {
   background-color: #69bdb7;
 }
 
+.history-button {
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  transition: left 0.5s;
+  padding: 10px 20px;
+  background-color: #86cac6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.button-open {
+  left: 260px;
+}
+
+.button-closed {
+  left: 10px;
+}
+
+.history-button:hover {
+  background-color: #69bdb7;
+}

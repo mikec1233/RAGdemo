@@ -50,9 +50,8 @@ const App: React.FC = () => {
     setUsername(name); // Store the username in state
   };
 
-  const handleButtonClick = () => {
-    alert("Button clicked!");
-  };
+  const handleButtonClick = () => {};
+
 
   return (
     <div className="app-container">
