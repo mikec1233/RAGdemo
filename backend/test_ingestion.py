@@ -10,6 +10,7 @@ from llama_index.core.ingestion import IngestionPipeline
 from llama_index.vector_stores.opensearch import OpensearchVectorStore
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.readers.json import JSONReader
 from app.settings.settings import global_settings, Settings, IndexSettings, LLMSettings, EmbeddingModelSettings, TransformationSettings, RetrieverSettings, ResponseSynthesizerSettings, NodePostProcessingSettings
 from llama_index.core.postprocessor import SimilarityPostprocessor
 
@@ -19,6 +20,7 @@ from llama_index.core.postprocessor import SimilarityPostprocessor
 # Load environment variables
 load_dotenv()
 files = os.getenv('DATA_PATH')
+json_file = os.getenv('JSON_PATH')
 apikey = os.getenv('OPENAI_API_KEY')
 os.environ["OPENAI_API_KEY"] = apikey
 
@@ -79,13 +81,18 @@ if __name__ == "__main__":
 
     # Load documents from the specified directory
     print("Loading documents from directory:", files)
-    #html files ## Patricked added .RMD to this line --remove if wrong
-    documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".html",".Rmd"]).load_data(show_progress=True)
+    #html files
+    #documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".html"]).load_data(show_progress=True)
     #.Rmd
     #documents = SimpleDirectoryReader(input_dir=files, recursive=True, required_exts=[".Rmd"]).load_data(show_progress=True)
+    
+
+    json_reader = JSONReader()
+    json_documents = json_reader.load_data(input_file=json_file, extra_info={})
 
     # Run the pipeline to ingest documents into the vector store
-    pipeline.run(documents=documents)
+    #pipeline.run(documents=documents)
+    pipeline.run(documents=json_documents)
     #caching and par. processing not set up - will be useful later. 
-    
+
     print("Ingestion completed.")
