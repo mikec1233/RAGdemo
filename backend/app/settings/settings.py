@@ -128,13 +128,13 @@ global_settings = Settings(
     ),
     retriever=RetrieverSettings(
         index="docdemo",
-        similarity_top_k=3,
+        similarity_top_k=5,
     ),
     response=ResponseSynthesizerSettings(
         #Testing different response modes.
-        #response_mode="tree_summarize",
+        response_mode="tree_summarize",
 
-        response_mode="context_only"
+        #response_mode="compact"
     ),
     nodepostproc=NodePostProcessingSettings(
         post_processors=[

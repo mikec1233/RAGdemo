@@ -4,6 +4,7 @@ from app.components.client.client_component import ClientComponent
 from app.components.query_engine.query_engine_component import QueryEngineComponent
 from app.components.llm.llm_component import LLMComponent
 from llama_index.vector_stores.opensearch import OpensearchVectorStore, OpensearchVectorClient
+from app.components.chat_engine.chat_engine_component import ChatEngineComponent
 from llama_index.core import VectorStoreIndex
 from llama_index.core.base import base_query_engine
 from app.settings.settings import Settings, global_settings
@@ -14,7 +15,8 @@ class ChatService:
         self.client=ClientComponent(global_settings).create_client()
         self.vector_store=OpensearchVectorStore(self.client)
         self.index=IndexingComponent(vector_store=self.vector_store,settings=global_settings).index
-        self.query_engine=QueryEngineComponent(self.index,global_settings).query_engine
+        self.query_engine_component = QueryEngineComponent(self.index, global_settings)
+        self.chat_engine_component = ChatEngineComponent(self.query_engine_component, global_settings)
         self.llm_component = LLMComponent(global_settings)
 
     #this method handles the logic for generating the responsve given the users question and the relavent docs from OpenSearch.        
@@ -66,3 +68,16 @@ class ChatService:
 
             # return {"response": llm_response}
 
+    # def query_with_chat_engine(self, user_input: str) -> dict:
+    #     chat_response = self.chat_engine_component.chat(user_input)
+    #     return {"response": chat_response}
+    
+    def query_with_chat_engine(self, user_input: str) -> dict:
+        print(f"[DEBUG] User Query: {user_input}")
+        
+        # Take user input and send it to the ChatEngine
+        chat_response = self.chat_engine_component.chat(user_input)
+        print(f"[DEBUG] ChatEngine Response Type: {type(chat_response)}")
+        print(f"[DEBUG] Raw ChatEngine Response: {chat_response}")
+
+        return {"response": chat_response}
