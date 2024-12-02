@@ -13,11 +13,13 @@ class QueryEngineComponent:
     def __init__(self,index:VectorStoreIndex,settings:Settings):
         self.settings = settings
         self.index = index
+        self.retriever = VectorIndexRetriever(
+            index=index,
+            similarity_top_k=settings.retriever.similarity_top_k,
+        )
+
         self.query_engine = RetrieverQueryEngine(
-            retriever=VectorIndexRetriever(
-                index = index,
-                similarity_top_k = settings.retriever.similarity_top_k,
-                ),
+            retriever=self.retriever,
             response_synthesizer=get_response_synthesizer(
                     response_mode=settings.response.response_mode,
                 ),
